@@ -6,7 +6,7 @@ const ListProduct = () => {
   const [allproducts, setAllproducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch("http://localhost:4000/allproducts")
+    await fetch("https://hala-chennai-admin.vercel.app/addproduct/allproducts")
       .then((res) => res.json())
       .then((data) => {
         setAllproducts(data);
@@ -18,14 +18,17 @@ const ListProduct = () => {
   }, []);
 
   const remove_product = async (id) => {
-    await fetch("http://localhost:4000/removeproduct", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    });
+    await fetch(
+      "https://hala-chennai-admin.vercel.app/addproduct/removeproduct",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    );
     await fetchInfo();
   };
 
