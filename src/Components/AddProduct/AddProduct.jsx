@@ -26,7 +26,7 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    await fetch("https://hala-chennai-admin.vercel.app/addproduct/upload", {
+    await fetch("https://hala-chennai-admin.vercel.app/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -41,17 +41,14 @@ const AddProduct = () => {
     if (responseData.success) {
       product.image = responseData.image_url;
       console.log(product);
-      await fetch(
-        "https://hala-chennai-admin.vercel.app/addproduct/addproduct",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(product),
-        }
-      )
+      await fetch("https://hala-chennai-admin.vercel.app/addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
         .then((resp) => resp.json())
         .then((data) => {
           data.success ? alert("Product Added") : alert("Failed");
